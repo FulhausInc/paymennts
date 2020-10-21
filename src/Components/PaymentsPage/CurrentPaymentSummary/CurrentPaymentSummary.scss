@@ -1,0 +1,65 @@
+@import "../../AppColors";
+@import "../../StyleMixins";
+
+.current-payment-summary-wrapper {
+    width: 100%;
+    // padding: 0 calc(5px + 1.25vw);
+}
+
+.current-payment-summary-row {
+        @include flex(row);
+    // justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+font-size: calc(3px + 0.75vw);
+margin-top: calc(1px + 0.2vw);
+    small {
+        margin: 0;
+        color: $greyColor;
+width: calc(25px + 6.25vw);
+    }
+
+       p {
+        margin: 0;
+        color: $blackColor;
+        padding-right: calc(3.5px + 0.85vw);
+    }
+}
+
+.current-payment-summary-amount-details {
+    @include flex(column);
+    width: 100%;
+
+    margin-top: calc(5px + 1.25vw);
+}
+
+.current-payment-summary-amount-row {
+    @include flex(row);
+    font-size: calc(3px + 0.75vw);
+    width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid #f2f2f2;
+        padding: calc(1.5px + 0.4vw) 0;
+        p {
+                   margin: 0;
+                   color: $blackColor;
+        }
+}
+
+.current-payment-total-amount-row {
+        @include flex(row);
+            font-size: calc(3.5px + 0.85vw);
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid $greyColor;
+        border-bottom: 1px solid $greyColor;
+        padding: calc(1.5px + 0.4vw) 0;
+
+        p {
+            margin: 0;
+            color: $blackColor;
+            font-weight: bold;
+        }
+}

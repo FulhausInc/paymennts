@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./CheckoutForm.scss";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-// import Button from "../../../CommonComponents/Button";
-// import Gap from "../../../CommonComponents/Gap";
-// import PageModal from "../../../CommonComponents/PageModal";
+import Button from "../../../CommonComponents/Button";
+import Gap from "../../../CommonComponents/Gap";
+import PageModal from "../../../CommonComponents/PageModal";
 import PaymentSuccessful from "./PaymentSuccessful/PaymentSuccessful";
 import { connect } from "react-redux";
 import fetchUtil from "../../../../Functions/fetchUtils";
@@ -63,22 +63,17 @@ const UnconnectedCheckoutForm = (props) => {
     }
 
     const paymentData = {
-      // bookingID: props.bookingID,
-      // productID: props.productID,
-      // nameOnCard: nameOnCard,
-      // billingAddress: props.billingAddress,
-      // paymentID: paymentMethod.id,
+      paymentUUID: props.paymentDetails.paymentUUID,
+      nameOnCard: nameOnCard,
+      paymentID: paymentMethod.id,
     };
 
-    let response = await fetchUtil(
-      "/payments/card/deposit",
-      "POST",
-      paymentData
-    );
+    let response = await fetchUtil("/payments/card", "POST", paymentData);
     if (response.success) {
       setProcessingPayment(false);
       setPaymentSuccessful(true);
       setShowPaymentSuccessfulModal(true);
+      paymentElement.clear()
     } else {
       setProcessingPayment(false);
       setPaymentSuccessful(false);
@@ -106,43 +101,45 @@ const UnconnectedCheckoutForm = (props) => {
         <div className="card-errors" role="alert">
           {error}
         </div>
-        {
-          // <Gap value="20px" />
-          // <Button
-          //   name="checkout"
-          //   background="#f4bd9a"
-          //   borderRadius="10px"
-          //   border="1px solid #f4bd9a"
-          //   width="100%"
-          //   enabled={!processingPayment && !paymentSuccessful && props.nameOnCard}
-          //   height="40px"
-          //   padding="0"
-          //   margin="0"
-          //   onClick={(e) => handleSubmit(e, props.nameOnCard)}
-          //   color="#1f1f1f"
-          //   label={
-          //     paymentSuccessful
-          //       ? "Payment Successful!"
-          //       : processingPayment
-          //         ? "Processing..."
-          //         : "PAY " + props.total
-          //   }
-          //   fontSize="calc(14px + 0.1vw)"
-          // />
-        }
+        <Gap value="20px" />
+        <Button
+          name="checkout"
+          background="#000000"
+          borderRadius="10px"
+          border="1px solid #fafafa"
+          width="100%"
+          enabled={
+            !processingPayment &&
+            !paymentSuccessful &&
+            !props.paymentDetails.paymentProcessed &&
+            props.nameOnCard &&
+            props.acceptedTNC
+          }
+          height="40px"
+          padding="0"
+          margin="0"
+          onClick={(e) => handleSubmit(e, props.nameOnCard)}
+          color="#ffffff"
+          label={
+            paymentSuccessful || props.paymentDetails.paymentProcessed
+              ? "Payment Successful!"
+              : processingPayment
+              ? "Processing..."
+              : "PAY " + props.total
+          }
+          fontSize="calc(14px + 0.1vw)"
+        />
       </div>
-      {
-        // <PageModal
-        //   visible={showPaymentSuccessfulModal}
-        //   component={
-        //     <PaymentSuccessful
-        //       propsHistory={props.propsHistory}
-        //       goToShop={(e) => handleGoToShop(e)}
-        //     />
-        //   }
-        //   onClose={(e) => handleShowPaymentSuccessfulModal(e)}
-        // />
-      }
+      <PageModal
+        visible={showPaymentSuccessfulModal}
+        component={
+          <PaymentSuccessful
+            propsHistory={props.propsHistory}
+            goToShop={(e) => handleGoToShop(e)}
+          />
+        }
+        onClose={(e) => handleShowPaymentSuccessfulModal(e)}
+      />
     </React.Fragment>
   );
 };

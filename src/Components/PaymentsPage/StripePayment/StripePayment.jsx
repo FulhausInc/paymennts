@@ -46,9 +46,10 @@ const StripePayment = (props) => {
           <h5>Card Details</h5>
           <Elements stripe={stripePromise}>
             <CheckoutForm
-              paymentDetails={props.bookingID}
+              paymentDetails={props.paymentDetails}
               propsHistory={props.propsHistory}
               nameOnCard={nameOnCard}
+              acceptedTNC={props.acceptedTNC}
               total={props.total}
             />
           </Elements>

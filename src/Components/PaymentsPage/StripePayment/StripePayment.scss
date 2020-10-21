@@ -4,13 +4,13 @@
 .stripe-payment-wrapper {
   @include flex(row);
   justify-content: center;
-  margin-top: 20px;
+  margin-top: calc(5px + 1.25vw);
 }
 
 .stripe-payment-form {
   background-color: $whiteColor;
   box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.05);
-  border-radius: 10px;
+  border-radius: calc(1px + 0.25vw);
   padding: 20px;
   border: 1px solid #aab7c4;
   width: 100%;
@@ -23,4 +23,5 @@ h3 {
   color: #aab7c4;
 }
 }
+
 

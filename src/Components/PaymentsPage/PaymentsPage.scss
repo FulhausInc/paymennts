@@ -25,3 +25,46 @@ img {
     padding: calc(10px + 2.5vw);
 }
 
+.payments-page-tnc-row {
+       @include flex(row);
+       width: 100%;
+       align-items: center;
+padding: calc(1px + 0.25vw) calc(2px + 0.5vw);
+       p {
+                            margin: 0;
+                            color: $blackColor;
+                            font-size: calc(2px + 0.5vw);
+                            padding-left: calc(1px + 0.25vw);
+                                        span {
+                                            color: $primaryColor;
+                                            cursor: pointer;
+                                            font-weight: bold;
+                                        }
+       }
+}
+
+.payments-page-next-payment-row {
+    @include flex(row);
+    width: 100%;
+margin-top: calc(5px + 1.25vw);
+    font-size: calc(3px + 0.75vw);
+   
+             p {
+                 margin: 0;
+                 color: $blackColor;
+                 padding-right: calc(3.5px + 0.85vw);
+                 line-height: calc(2px + 0.5vw);
+ color: $primaryColor;
+     span {
+         font-size: calc(2px + 0.5vw);
+
+     }
+             }
+                  span {
+                      font-size: calc(2px + 0.5vw);
+                       
+                  }
+    
+}
+
+
