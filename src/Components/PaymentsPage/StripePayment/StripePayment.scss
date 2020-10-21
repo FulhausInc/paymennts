@@ -1,24 +1,26 @@
+@import "../../AppColors";
+@import "../../StyleMixins";
+
 .stripe-payment-wrapper {
-  width: 100%;
-  display: flex;
+  @include flex(row);
   justify-content: center;
   margin-top: 20px;
 }
 
 .stripe-payment-form {
-  background: #ffffff;
+  background-color: $whiteColor;
   box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.05);
   border-radius: 10px;
   padding: 20px;
-  border: 1px solid #f4bd9a;
+  border: 1px solid #aab7c4;
   width: 100%;
-}
-
-.stripe-payment-form h5 {
+  h5 {
   margin: 0 0 5px 5px;
 }
 
-.stripe-payment-form h3 {
+h3 {
   margin: 0 0 20px 5px;
-  color: #f4bd9a;
+  color: #aab7c4;
 }
+}
+
