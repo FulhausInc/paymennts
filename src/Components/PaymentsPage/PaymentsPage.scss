@@ -1,0 +1,27 @@
+@import "../AppColors";
+@import "../StyleMixins";
+
+.payments-page-wrapper {
+    @include flex(row);
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.payments-page-left-section {
+    width: 60%;
+    height: 100%;
+    overflow: scroll;
+        padding: calc(10px + 2.5vw);
+img {
+    width: 100%;
+}
+}
+
+.payments-page-right-section {
+    background-color: $lightColor;
+    width: 40%;
+    height: 100%;
+    padding: calc(10px + 2.5vw);
+}
+
