@@ -7,8 +7,7 @@ const App = (props) => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact={true} path="/" component={PaymentsPage} />
-        <Route exact={true} path="/:paymentUUID" component={PaymentsPage} />
+        <Route exact={true} path="/p/:paymentUUID" component={PaymentsPage} />
         <Route exact={true} path="/404" component={PageNotFound} />
         <Redirect to="/404" />
       </Switch>

@@ -23,6 +23,11 @@ img {
     width: 40%;
     height: 100%;
     padding: calc(10px + 2.5vw);
+
+    h6 {
+        margin: calc(20px + 5vw);
+        font-size: calc(8px + 2vw);
+    }
 }
 
 .payments-page-tnc-row {

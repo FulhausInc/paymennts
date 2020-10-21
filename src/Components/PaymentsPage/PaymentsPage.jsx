@@ -9,9 +9,10 @@ import CurrentPaymentSummary from "./CurrentPaymentSummary/CurrentPaymentSummary
 import { format } from "date-fns";
 import CheckBox from "../CommonComponents/CheckBox";
 
+
 const PaymentsPage = (props) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [paymentDetails, setPaymentDetails] = useState("");
+  const [paymentDetails, setPaymentDetails] = useState(null);
   const [acceptedTNC, setAcceptedTNC] = useState(false);
 
   useEffect(() => {
@@ -61,7 +62,9 @@ const PaymentsPage = (props) => {
         ></img>
       </div>
       <div className="payments-page-right-section">
+      {paymentDetails.paymentProcessed ? <h6>The payment for this project has been finalized.</h6> : <React.Fragment>
         <CurrentPaymentSummary paymentDetails={paymentDetails} />
+        
         <div className="payments-page-tnc-row">
           <CheckBox
             backgroundColor="#FF4E24"
@@ -118,7 +121,9 @@ const PaymentsPage = (props) => {
             </p>
           </div>
         )}
+        </React.Fragment>}
       </div>
+      
     </div>
   );
 };
