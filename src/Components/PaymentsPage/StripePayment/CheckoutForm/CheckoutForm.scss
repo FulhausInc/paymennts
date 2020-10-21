@@ -23,3 +23,12 @@
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
 }
+
+.card-errors {
+font-weight: bold;
+font-size: calc(5px + 0.5vw);
+color: #ff0033;
+width: 100%;
+text-align: center;
+padding-top: calc(2px + 0.2vw)
+}

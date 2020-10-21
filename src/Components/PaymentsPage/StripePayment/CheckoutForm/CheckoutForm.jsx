@@ -77,6 +77,7 @@ const UnconnectedCheckoutForm = (props) => {
     } else {
       setProcessingPayment(false);
       setPaymentSuccessful(false);
+      setError(response.message);
       console.log(response.message);
     }
   };
