@@ -9,7 +9,7 @@ const CurrentPaymentSummary = ({ paymentDetails }) => {
     <div className="current-payment-summary-wrapper">
       <div className="current-payment-summary-row">
         <small>Client:</small>
-        <p>{paymentDetails.payerName}</p>
+        <p>{paymentDetails.payerName.toUpperCase()}</p>
       </div>
       <div className="current-payment-summary-row">
         <small>Payment ID:</small>
