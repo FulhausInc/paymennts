@@ -55,11 +55,13 @@ const PaymentsPage = (props) => {
     </div>
   ) : (
     <div className="payments-page-wrapper">
-      <div className="payments-page-left-section">
+      <div className="payments-page-left-section" style={paymentDetails.paymentProcessed ? {overflow: "hidden"} : {}}>
         <img
           src={paymentDetails.paymentDetailsImageURL}
           alt="Payment Details"
+          style={paymentDetails.paymentProcessed ? {filter: "blur(5px)"} : {}}
         ></img>
+        {paymentDetails.paymentProcessed && <div className="payments-page-left-section-overlay"></div>}
       </div>
       <div className="payments-page-right-section">
       {paymentDetails.paymentProcessed ? <h6>The payment for this project has been finalized.</h6> : <React.Fragment>
