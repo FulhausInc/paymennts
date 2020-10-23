@@ -55,11 +55,17 @@ const PaymentsPage = (props) => {
   };
 
   return isLoading ? (
-    <div className="payments-page-wrapper">
+    <div
+      className="payments-page-wrapper"
+      style={{ height: window.innerHeight }}
+    >
       <BlockLoading color="#FF4E24" />
     </div>
   ) : (
-    <div className="payments-page-wrapper">
+    <div
+      className="payments-page-wrapper"
+      style={{ height: window.innerHeight }}
+    >
       {paymentDetails ? (
         <React.Fragment>
           <div
@@ -165,23 +171,25 @@ const PaymentsPage = (props) => {
         </div>
       )}
 
-      <div className="payments-page-popup-button-mobile">
-        <Button
-          name="checkout"
-          background="#000000"
-          borderRadius="10px"
-          border="1px solid #fafafa"
-          width="100%"
-          enabled={true}
-          height="40px"
-          padding="0"
-          margin="0"
-          onClick={(e) => handleShowPaymentModal(showPaymentModal)}
-          color="#ffffff"
-          label={!showPaymentModal ? "Make Payment" : "Close"}
-          fontSize="calc(14px + 0.1vw)"
-        />
-      </div>
+      {paymentDetails && (
+        <div className="payments-page-popup-button-mobile">
+          <Button
+            name="checkout"
+            background="#000000"
+            borderRadius="10px"
+            border="1px solid #fafafa"
+            width="100%"
+            enabled={true}
+            height="40px"
+            padding="0"
+            margin="0"
+            onClick={(e) => handleShowPaymentModal(showPaymentModal)}
+            color="#ffffff"
+            label={!showPaymentModal ? "Make Payment" : "Close"}
+            fontSize="calc(14px + 0.1vw)"
+          />
+        </div>
+      )}
     </div>
   );
 };
