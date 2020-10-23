@@ -31,7 +31,7 @@ const CurrentPaymentSummary = ({ paymentDetails }) => {
         </div>
         {paymentDetails.taxDetails.map((tax, index) => {
           return (
-            <div className="current-payment-summary-amount-row">
+            <div className="current-payment-summary-amount-row" key={index}>
               <p>{"Tax - " + tax.description}</p>
               <p>
                 {formatAmountByCurrency(
