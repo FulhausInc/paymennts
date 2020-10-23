@@ -9,7 +9,7 @@
 .current-payment-summary-row {
         @include flex(row);
     // justify-content: space-between;
-    align-items: flex-end;
+    // align-items: flex-start;
     width: 100%;
 font-size: calc(3px + 0.75vw);
 margin-top: calc(1px + 0.2vw);
@@ -23,6 +23,7 @@ width: calc(25px + 6.25vw);
         margin: 0;
         color: $blackColor;
         padding-right: calc(3.5px + 0.85vw);
+        flex: 1;
     }
 }
 
@@ -62,4 +63,25 @@ width: calc(25px + 6.25vw);
             color: $blackColor;
             font-weight: bold;
         }
+}
+
+
+@media only screen and (max-width: 1000px) {
+
+.current-payment-summary-row {
+    font-size: calc(8px + 0.5vw);
+    small {
+        width: calc(80px + 1.25vw);
+    }
+}
+
+.current-payment-summary-amount-row {
+    font-size: calc(8px + 0.5vw);
+}
+
+.current-payment-total-amount-row {
+    font-size: calc(10px + 0.5vw);
+}
+
+
 }

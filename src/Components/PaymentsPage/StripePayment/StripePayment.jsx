@@ -22,7 +22,7 @@ const StripePayment = (props) => {
     <div className="stripe-payment-wrapper">
       {showForm && (
         <div className="stripe-payment-form">
-          <h3>Payment (Debit or Credit card)</h3>
+          <h3>Debit or Credit card</h3>
           <h5>Name on Card</h5>
           <InputBox
             name="nameOnCard"
