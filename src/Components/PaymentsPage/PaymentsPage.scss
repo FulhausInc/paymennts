@@ -5,7 +5,7 @@
     @include flex(row);
     justify-content: center;
     width: 100vw;
-    // height: 100vh;
+    height: 100vh;
     position: relative;
 }
 
@@ -14,9 +14,12 @@
     height: 100%;
     overflow: scroll;
     position: relative;
-        padding: calc(10px + 2.5vw);
+        padding: calc(10px + 2.5vw) calc(10px + 2.5vw) calc(50px + 12.5vw) calc(10px + 2.5vw);
+        text-align: center;
+       
 img {
     width: 100%;
+    max-width: 600px;
 }
 }
 
@@ -133,7 +136,8 @@ margin-top: calc(5px + 1.25vw);
  }
 
   .payments-page-popup-button-mobile {
-      padding: 0 calc(10px + 2.5vw);
+      padding: calc(10px + 2.5vw);
+      background-color: $whiteColor;
   }
 
 }

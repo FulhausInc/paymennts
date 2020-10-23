@@ -54,20 +54,12 @@ const PaymentsPage = (props) => {
     setShowPaymentModal(!showPaymentModalValue);
   };
 
-  console.log(window.screen.availHeight);
-
   return isLoading ? (
-    <div
-      className="payments-page-wrapper"
-      style={{ height: window.screen.availHeight }}
-    >
+    <div className="payments-page-wrapper">
       <BlockLoading color="#FF4E24" />
     </div>
   ) : (
-    <div
-      className="payments-page-wrapper"
-      style={{ height: window.screen.availHeight }}
-    >
+    <div className="payments-page-wrapper">
       {paymentDetails ? (
         <React.Fragment>
           <div
