@@ -32,8 +32,7 @@ img {
     background-color: rgba(255,255,255, 0.8);
 }
 
-
- .payments-page-right-section-overlay-mobile {
+ .payments-page-right-section-overlay {
      width: 40%;
  }
 
@@ -105,13 +104,13 @@ margin-top: calc(5px + 1.25vw);
      width: 100%;
  }
 
-   .payments-page-right-section-overlay-mobile {
+   .payments-page-right-section-overlay {
        background-color: rgba($blackColor, 0.5);
        width: 100%;
        position: absolute;
        top: 0;
        height: 100%;
-       display: flex;
+       display: none;
        justify-content: center;
        padding: 5px;
    }

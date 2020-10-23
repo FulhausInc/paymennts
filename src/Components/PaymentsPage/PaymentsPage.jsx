@@ -78,31 +78,10 @@ const PaymentsPage = (props) => {
             {paymentDetails.paymentProcessed && (
               <div className="payments-page-left-section-overlay"></div>
             )}
-
-            <div className="payments-page-popup-button-mobile">
-              <Button
-                name="checkout"
-                background="#000000"
-                borderRadius="10px"
-                border="1px solid #fafafa"
-                width="100%"
-                enabled={true}
-                height="40px"
-                padding="0"
-                margin="0"
-                onClick={(e) => handleShowPaymentModal(showPaymentModal)}
-                color="#ffffff"
-                label={!showPaymentModal ? "Make Payment" : "Close"}
-                fontSize="calc(14px + 0.1vw)"
-              />
-            </div>
           </div>
           <div
-            className={
-              showPaymentModal
-                ? "payments-page-right-section-overlay-mobile"
-                : ""
-            }
+            className="payments-page-right-section-overlay"
+            style={showPaymentModal ? { display: "flex" } : {}}
           >
             <div className="payments-page-right-section">
               {paymentDetails.paymentProcessed ? (
@@ -185,6 +164,24 @@ const PaymentsPage = (props) => {
           </h6>
         </div>
       )}
+
+      <div className="payments-page-popup-button-mobile">
+        <Button
+          name="checkout"
+          background="#000000"
+          borderRadius="10px"
+          border="1px solid #fafafa"
+          width="100%"
+          enabled={true}
+          height="40px"
+          padding="0"
+          margin="0"
+          onClick={(e) => handleShowPaymentModal(showPaymentModal)}
+          color="#ffffff"
+          label={!showPaymentModal ? "Make Payment" : "Close"}
+          fontSize="calc(14px + 0.1vw)"
+        />
+      </div>
     </div>
   );
 };
