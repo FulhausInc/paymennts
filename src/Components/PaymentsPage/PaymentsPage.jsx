@@ -55,11 +55,17 @@ const PaymentsPage = (props) => {
   };
 
   return isLoading ? (
-    <div className="payments-page-wrapper">
+    <div
+      className="payments-page-wrapper"
+      style={{ height: window.innerHeight }}
+    >
       <BlockLoading color="#FF4E24" />
     </div>
   ) : (
-    <div className="payments-page-wrapper">
+    <div
+      className="payments-page-wrapper"
+      style={{ height: window.innerHeight }}
+    >
       {paymentDetails ? (
         <React.Fragment>
           <div

@@ -5,7 +5,7 @@
     @include flex(row);
     justify-content: center;
     width: 100vw;
-    height: 100vh;
+    // height: 100vh;
     position: relative;
 }
 
@@ -103,9 +103,16 @@ margin-top: calc(5px + 1.25vw);
 
 
 @media only screen and (max-width: 1000px) {
+
+    .payments-page-wrapper {
+        @include flex(column);
+        // justify-content: center;
+    }
+
  .payments-page-left-section {
      width: 100%;
      padding: calc(10px + 2.5vw) 0 calc(50px + 12.5vw) 0;
+     flex: 1;
  }
 
    .payments-page-right-section-overlay {
@@ -130,10 +137,6 @@ margin-top: calc(5px + 1.25vw);
 
  .payments-page-popup-button-mobile {
      display: inherit;
-     position: absolute;
-     bottom: 0;
-     left: 0;
-     right: 0;
  }
 
   .payments-page-popup-button-mobile {
