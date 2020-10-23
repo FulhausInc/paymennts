@@ -116,12 +116,12 @@ margin-top: calc(5px + 1.25vw);
        display: none;
        justify-content: center;
        padding: 5px;
+            overflow: scroll;
+            padding: 50px 0 calc(50px + 12.5vw) 0;
    }
 
  .payments-page-right-section {
      width: calc(250px + 25vw);
-                position: absolute;
-                top: 50px;
                 height: min-content;
  }
 
