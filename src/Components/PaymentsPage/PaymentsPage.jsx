@@ -91,7 +91,7 @@ const PaymentsPage = (props) => {
           >
             <div className="payments-page-right-section">
               {paymentDetails.paymentProcessed ? (
-                <h6>The payment for this project has been finalized.</h6>
+                <h6>This payment has been processed.</h6>
               ) : (
                 <React.Fragment>
                   <CurrentPaymentSummary paymentDetails={paymentDetails} />
