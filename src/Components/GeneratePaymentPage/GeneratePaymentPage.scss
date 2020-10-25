@@ -184,21 +184,34 @@ h5{
 
 
 .generate-payment-page-payment-link-wrapper {
-   @include flex(row);
-   align-items: center;
+   @include flex(column);
    padding: calc(5px + 1.25vw);
    font-weight: bold;
+   width: 100%;
    p{
      font-size: calc(3px + 0.75vw);
-     margin: 0;
+     margin: 0 calc(1px + 0.25vw) 0 0;
    }
 
    a{
        margin: 0;
        color: $primaryColor;
-       font-size: calc(3px + 0.75vw);
+       font-size: calc(5px + 1.25vw);
        cursor: pointer;
+       display: block;
+       word-wrap: break-word;
+        white-space: pre-wrap;
+        white-space: -moz-pre-wrap;
+        white-space: -pre-wrap;
+        white-space: -o-pre-wrap;
+        width: 100%;
+
    }
+
+      a:hover {
+          text-decoration: underline;
+
+      }
 }
 
 

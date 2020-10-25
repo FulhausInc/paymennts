@@ -499,7 +499,8 @@ const UnconnectedGeneratePaymentPage = (props) => {
         </div>
         {paymentLink && (
           <div className="generate-payment-page-payment-link-wrapper">
-            <p>PaymentLink: </p>
+            <p>PaymentLink:</p>
+
             <a href={paymentLink}>{paymentLink}</a>
           </div>
         )}
