@@ -1,0 +1,8 @@
+@import "../AppColors";
+@import "../StyleMixins";
+
+.landing-page-wrapper {
+    @include flex(column);
+    width: 100vw;
+    height: 100vh;
+}

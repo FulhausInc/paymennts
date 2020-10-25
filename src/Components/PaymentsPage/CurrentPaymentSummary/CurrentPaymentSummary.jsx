@@ -21,7 +21,7 @@ const CurrentPaymentSummary = ({ paymentDetails }) => {
       </div>
       <div className="current-payment-summary-amount-details">
         <div className="current-payment-summary-amount-row">
-          <p>Total Amount</p>
+          <p>Amount</p>
           <p>
             {formatAmountByCurrency(
               paymentDetails.chargeAmount,

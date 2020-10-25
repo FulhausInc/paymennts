@@ -1,0 +1,206 @@
+@import "../AppColors";
+@import "../StyleMixins";
+
+.generate-payment-page-wrapper {
+    @include flex(row);
+    width: 100vw;
+    height: 100vh;
+    
+}
+
+.generate-payment-page-left-section {
+    padding: calc(20px + 5vw);
+    width: 50%;
+    border-right: 1px solid $lightColor;
+    h3{
+       font-size: calc(4px + 1vw);
+       margin: 0 0 calc(5px + 1.25vw) 0;
+       span{
+          font-size: calc(5px + 1.25vw);
+          color: $primaryColor;
+       }
+    }
+
+    h6{
+      font-size: calc(3px + 0.75vw);
+      color: $greyColor;
+      margin: calc(5px + 1.25vw) 0 0 0;
+    }
+}
+
+.generate-payment-page-input-row {
+    @include flex(row);
+    justify-content: space-between;
+    width: 100%;
+}
+
+.generate-payment-page-input-wrapper {
+  padding: 0 0 calc(2px + 0.5vw) 0;
+  h5{
+      margin: calc(2px + 0.5vw);
+  }
+}
+
+.generate-payment-page-input-error {
+    color: $primaryColor;
+    margin: 0;
+    font-size: calc(2px + 0.5);
+}
+
+.generate-payment-page-right-section {
+    width: 50%;
+    padding: calc(5px + 1.25vw);
+}
+
+.generate-payment-page-payment-details-preview {
+    border: 1px solid $lightColor;
+}
+
+.generate-payment-page-payment-details-banner {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    padding: calc(5px + 1.25vw);
+}
+
+.generate-payment-page-payment-details-header {
+     @include flex(row);
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.generate-payment-page-payment-details-header-logo {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: calc(30px + 5vw);
+    width: calc(100px + 5vw);
+}
+
+.generate-payment-page-payment-details-header-address {
+h5{
+    margin: 0;
+    color: $primaryColor2;
+    font-size: calc(3px + 0.75vw);
+}
+}
+
+.generate-payment-page-payment-details-subheader{
+    @include flex(row);
+    justify-content: space-between;
+    align-items: center;
+    padding: calc(5px + 1.25vw);
+    h5{
+        margin: 0;
+        font-size: calc(3px + 0.75vw);
+        span{
+            color: $primaryColor2;
+        }
+    }
+}
+
+.generate-payment-page-payment-details-body {
+    width: 100%;
+     padding: calc(5px + 1.25vw);
+             font-size: calc(3px + 0.75vw);
+             color: $greyColor;
+             h3 {
+                 margin: 0;
+                 color: $blackColor;
+                 font-size: calc(3px + 0.75vw);
+             };
+    .item-1{
+        width: 10%;
+        text-align: center;
+
+    };
+
+        .item-2 {
+            width: 45%;
+            text-align: center;
+        };
+
+                .item-3 {
+                    width: 30%;
+                    text-align: center;
+                };
+                }
+
+
+.generate-payment-page-payment-details-body-header {
+  @include flex(row);
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+ 
+}
+
+.generate-payment-page-payment-details-body-header {
+    @include flex(row);
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.generate-payment-page-payment-details-body-details {
+        @include flex(row);
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+         border-top: 1px solid $lightColor;
+         padding: calc(1px + 0.25vw) 0;
+}
+
+.generate-payment-page-payment-details-totals {
+    @include flex(row);
+    justify-content: flex-end;
+    width: 100%;
+    border-top: 1px solid $lightColor;
+    padding: calc(1px + 0.25vw) calc(5px + 1.25vw);
+
+    h2 {
+        font-size: calc(4px + 1vw);
+        margin: 0;
+
+        span {
+            font-size: calc(6px + 1.5vw);
+            color: $primaryColor2;
+        }
+    }
+}
+
+
+
+.generate-payment-page-generate-button-wrapper {
+     @include flex(row);
+     width: 100%;
+     justify-content: flex-end;
+     align-items: center;
+     padding-top: calc(5px + 1.25vw);
+}
+
+
+.generate-payment-page-payment-link-wrapper {
+   @include flex(row);
+   align-items: center;
+   padding: calc(5px + 1.25vw);
+   font-weight: bold;
+   p{
+     font-size: calc(3px + 0.75vw);
+     margin: 0;
+   }
+
+   a{
+       margin: 0;
+       color: $primaryColor;
+       font-size: calc(3px + 0.75vw);
+       cursor: pointer;
+   }
+}
+
+
+
+

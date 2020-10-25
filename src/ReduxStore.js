@@ -11,23 +11,7 @@ if (process.env.REACT_APP_ENV === "development") {
 const ReduxStore = createStore(
   reducer,
   {
-        showImageInClientView: false,
-    project: null,
-        quoteID: null,
-            quoteData: [],
-    projectCurrency: "USD",
-    totalQuoteAmount: 0,
-    totalDiscount: 0,
-    totalShipping: 0,
-    totalDiscountType: "",
-    totalShippingType: "",
-    totalInstallation: 0,
-    totalInstallationType: "",
-    quoteDate: null,
-    deliveryDate: new Date(),
-    approved: false,
-    paymentOption: "",
-    rentalPriceIdentifier: "",
+    allPaymentDetails: [],
   },
   devTools.tools
 );

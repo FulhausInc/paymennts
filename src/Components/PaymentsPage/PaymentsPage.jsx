@@ -25,7 +25,7 @@ const PaymentsPage = (props) => {
 
     const fetchPaymentDetails = async (paymentDetailsUUID) => {
       let response = await fetchUtils(
-        "/payments/details?UUID=" + paymentDetailsUUID,
+        "/payments/details/UUID/" + paymentDetailsUUID,
         "GET",
         ""
       );
@@ -41,7 +41,7 @@ const PaymentsPage = (props) => {
     };
 
     fetchPaymentDetails(pathName);
-  }, []);
+  }, [props]);
 
   const handleDownloadTNC = (event) => {
     window.open(
