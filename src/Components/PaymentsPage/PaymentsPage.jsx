@@ -9,6 +9,7 @@ import CurrentPaymentSummary from "./CurrentPaymentSummary/CurrentPaymentSummary
 import { format } from "date-fns";
 import CheckBox from "../CommonComponents/CheckBox";
 import Button from "../CommonComponents/Button";
+import PaymentDetails from "../GeneratePaymentPage/PaymentDetails/PaymentDetails";
 
 const PaymentsPage = (props) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -69,18 +70,49 @@ const PaymentsPage = (props) => {
       {paymentDetails ? (
         <React.Fragment>
           <div
-            className="payments-page-left-section"
+            className={
+              "payments-page-left-section" +
+              (paymentDetails.paymentProcessed
+                ? " payments-page-left-section-blur"
+                : "")
+            }
             style={
               paymentDetails.paymentProcessed ? { overflow: "hidden" } : {}
             }
           >
-            <img
-              src={paymentDetails.paymentDetailsImageURL}
-              alt="Payment Details"
-              style={
-                paymentDetails.paymentProcessed ? { filter: "blur(5px)" } : {}
-              }
-            ></img>
+            <PaymentDetails
+              paymentDetails={paymentDetails}
+              paymentID={paymentDetails.paymentID}
+            />
+
+            {paymentDetails &&
+              (paymentDetails.paymentDetailsURL ||
+                paymentDetails.paymentDetailsImageURL) && (
+                <a
+                  href={
+                    paymentDetails.paymentDetailsURL
+                      ? paymentDetails.paymentDetailsURL
+                      : paymentDetails.paymentDetailsImageURL
+                  }
+                >
+                  View Details
+                </a>
+              )}
+
+            {
+              // <img
+              //   src={
+              //     paymentDetails.paymentDetailsImageURL +
+              //     "?" +
+              //     Date.now().toString()
+              //   }
+              //   alt="Payment Details"
+              //   style={
+              //     paymentDetails.paymentProcessed ? { filter: "blur(5px)" } : {}
+              //   }
+              // ></img>
+            }
+
             {paymentDetails.paymentProcessed && (
               <div className="payments-page-left-section-overlay"></div>
             )}

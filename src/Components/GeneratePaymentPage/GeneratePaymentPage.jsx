@@ -10,14 +10,12 @@ import ChevronDown from "../../Icons/chevron_down.png";
 import paymentIDGenerator from "../../Functions/paymentIDGenerator";
 import Line from "../CommonComponents/Line";
 import Button from "../CommonComponents/Button";
-import BannerImage from "../../Images/banner.png";
-import Logo from "../../Logo/fulhaus-logo.png";
 import copyOfArrayOrObject from "../../Functions/copyOfArrayOrObject";
-import formatAmountByCurrency from "../../Functions/currencyFormatter";
 import fetchUtil from "../../Functions/fetchUtils";
 import html2canvas from "html2canvas";
 import { connect } from "react-redux";
 import { BlockLoading } from "react-loadingg";
+import PaymentDetails from "./PaymentDetails/PaymentDetails";
 
 const UnconnectedGeneratePaymentPage = (props) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -180,28 +178,18 @@ const UnconnectedGeneratePaymentPage = (props) => {
     copyOfPaymentDetails.taxDetails = taxDetails;
     copyOfPaymentDetails.chargeAmount = parseFloat(paymentDetails.chargeAmount);
 
-    setTimeout(async () => {
-      const canvas = await html2canvas(
-        document.getElementById("payment-details")
-      );
-      copyOfPaymentDetails.paymentDetailsBase64ImageDataURL = canvas.toDataURL(
-        "image/png",
-        1
-      );
-
-      const response = await fetchUtil(
-        "/payments/create-payment-details",
-        "POST",
-        copyOfPaymentDetails
-      );
-      if (response.success) {
-        setPaymentLink(response.paymentLink);
-        setGeneratingPaymentLink(false);
-      } else {
-        console.log(response.message);
-        setGeneratingPaymentLink(false);
-      }
-    }, 3000);
+    const response = await fetchUtil(
+      "/payments/create-payment-details",
+      "POST",
+      copyOfPaymentDetails
+    );
+    if (response.success) {
+      setPaymentLink(response.paymentLink);
+      setGeneratingPaymentLink(false);
+    } else {
+      console.log(response.message);
+      setGeneratingPaymentLink(false);
+    }
   };
 
   return isLoading ? (
@@ -427,76 +415,7 @@ const UnconnectedGeneratePaymentPage = (props) => {
       </div>
       <div className="generate-payment-page-right-section">
         <h5>Preview</h5>
-        <div
-          className="generate-payment-page-payment-details-preview"
-          id="payment-details"
-        >
-          <div className="generate-payment-page-payment-details-preview-wrapper">
-            <div
-              className="generate-payment-page-payment-details-banner"
-              style={{ backgroundImage: `url(${BannerImage})` }}
-            >
-              <div className="generate-payment-page-payment-details-header">
-                <div
-                  className="generate-payment-page-payment-details-header-logo"
-                  style={{ backgroundImage: `url(${Logo})` }}
-                ></div>
-                <div className="generate-payment-page-payment-details-header-address">
-                  <h5>Fulhaus Inc</h5>
-                  <h5>6560 Avenue de l'Esplanade #020</h5>
-                  <h5>Montréal, QC H2V 4L5</h5>
-                  <h5>info@fulhaus.com</h5>
-                </div>
-              </div>
-            </div>
-            <div className="generate-payment-page-payment-details-subheader">
-              <h5>
-                Billed To: <span>{paymentDetails.payerName}</span>
-              </h5>
-              <h5>
-                Payment ID: <span>{paymentID}</span>
-              </h5>
-            </div>
-            <div className="generate-payment-page-payment-details-body">
-              <div className="generate-payment-page-payment-details-body-header">
-                <div className="item-1">SN</div>
-                <div className="item-2">Description</div>
-                <div className="item-3">Amount</div>
-              </div>
-              <div className="generate-payment-page-payment-details-body-details">
-                <div className="item-1">
-                  <h3>1</h3>
-                </div>
-                <div className="item-2">
-                  <h3>{paymentDetails.description}</h3>
-                </div>
-                <div className="item-3">
-                  <h3>
-                    {formatAmountByCurrency(
-                      paymentDetails.chargeAmount
-                        ? paymentDetails.chargeAmount
-                        : 0,
-                      paymentDetails.currency ? paymentDetails.currency : "USD"
-                    )}
-                  </h3>
-                </div>
-              </div>
-            </div>
-            <div className="generate-payment-page-payment-details-totals">
-              <h2>
-                Total:{" "}
-                <span>
-                  {formatAmountByCurrency(
-                    paymentDetails.chargeAmount
-                      ? paymentDetails.chargeAmount
-                      : 0,
-                    paymentDetails.currency ? paymentDetails.currency : "USD"
-                  )}
-                </span>
-              </h2>
-            </div>
-          </div>
-        </div>
+        <PaymentDetails paymentDetails={paymentDetails} paymentID={paymentID} />
         {paymentLink && (
           <div className="generate-payment-page-payment-link-wrapper">
             <p>PaymentLink:</p>
