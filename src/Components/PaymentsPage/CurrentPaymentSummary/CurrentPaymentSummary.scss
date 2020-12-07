@@ -1,87 +1,83 @@
-@import "../../AppColors";
-@import "../../StyleMixins";
+@import '../../AppColors';
+@import '../../StyleMixins';
 
 .current-payment-summary-wrapper {
-    width: 100%;
-    // padding: 0 calc(5px + 1.25vw);
+  width: 100%;
+  // padding: 0 calc(5px + 1.25vw);
 }
 
 .current-payment-summary-row {
-        @include flex(row);
-    // justify-content: space-between;
-    // align-items: flex-start;
-    width: 100%;
-font-size: calc(3px + 0.75vw);
-margin-top: calc(1px + 0.2vw);
-    small {
-        margin: 0;
-        color: $greyColor;
-width: calc(25px + 6.25vw);
-    }
+  @include flex(row);
+  // justify-content: space-between;
+  // align-items: flex-start;
+  width: 100%;
+  font-size: calc(3px + 0.75vw);
+  margin-top: calc(1px + 0.2vw);
+  small {
+    margin: 0;
+    color: $greyColor;
+    width: calc(25px + 6.25vw);
+  }
 
-       p {
-        margin: 0;
-        color: $blackColor;
-        padding-right: calc(3.5px + 0.85vw);
-        flex: 1;
-    }
+  p {
+    margin: 0;
+    color: $blackColor;
+    padding-right: calc(3.5px + 0.85vw);
+    flex: 1;
+  }
 }
 
 .current-payment-summary-amount-details {
-    @include flex(column);
-    width: 100%;
+  @include flex(column);
+  width: 100%;
 
-    margin-top: calc(5px + 1.25vw);
+  margin-top: calc(5px + 1.25vw);
 }
 
 .current-payment-summary-amount-row {
-    @include flex(row);
-    font-size: calc(3px + 0.75vw);
-    width: 100%;
-        justify-content: space-between;
-        align-items: center;
-        border-top: 1px solid #f2f2f2;
-        padding: calc(1.5px + 0.4vw) 0;
-        p {
-                   margin: 0;
-                   color: $blackColor;
-        }
+  @include flex(row);
+  font-size: calc(3px + 0.75vw);
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #f2f2f2;
+  padding: calc(1.5px + 0.4vw) 0;
+  p {
+    margin: 0;
+    color: $blackColor;
+  }
 }
 
 .current-payment-total-amount-row {
-        @include flex(row);
-            font-size: calc(3.5px + 0.85vw);
-        width: 100%;
-        justify-content: space-between;
-        align-items: center;
-        border-top: 1px solid $greyColor;
-        border-bottom: 1px solid $greyColor;
-        padding: calc(1.5px + 0.4vw) 0;
+  @include flex(row);
+  font-size: calc(3.5px + 0.85vw);
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid $greyColor;
+  border-bottom: 1px solid $greyColor;
+  padding: calc(1.5px + 0.4vw) 0;
 
-        p {
-            margin: 0;
-            color: $blackColor;
-            font-weight: bold;
-        }
+  p {
+    margin: 0;
+    color: $blackColor;
+    font-weight: bold;
+  }
 }
-
 
 @media only screen and (max-width: 1000px) {
-
-.current-payment-summary-row {
+  .current-payment-summary-row {
     font-size: calc(8px + 0.5vw);
     small {
-        width: calc(80px + 1.25vw);
+      width: calc(80px + 1.25vw);
     }
-}
+  }
 
-.current-payment-summary-amount-row {
+  .current-payment-summary-amount-row {
     font-size: calc(8px + 0.5vw);
-}
+  }
 
-.current-payment-total-amount-row {
+  .current-payment-total-amount-row {
     font-size: calc(10px + 0.5vw);
-}
-
-
+  }
 }
