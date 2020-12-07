@@ -16,12 +16,7 @@ const UnconnectedLandingPage = ({ history, dispatch, allPaymentDetails }) => {
           type: 'set-allPaymentDetails',
           value: response.data,
         })
-<<<<<<< HEAD
-=======
 
-        console.log(response.data)
-        // console.log(response.data)
->>>>>>> 2e86ba85ef65f15cc8f9ab530cb294798dc2b64d
         setIsLoading(false)
       } else {
         console.log(response.message)
