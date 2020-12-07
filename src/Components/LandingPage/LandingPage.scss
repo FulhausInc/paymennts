@@ -1,8 +1,121 @@
-@import "../AppColors";
-@import "../StyleMixins";
+@import '../AppColors';
+@import '../StyleMixins';
+
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.payments-landing-page {
+  @include flex(column);
+
+  h1 {
+    color: #fff;
+    background-color: $primaryColor;
+    font-size: 3rem;
+    margin: 0 0 2rem;
+    padding: 3rem;
+  }
+}
 
 .landing-page-wrapper {
-    @include flex(column);
-    width: 100vw;
-    height: 100vh;
+  @include flex(column);
+  width: 95%;
+  max-width: 1800px;
+  margin: 0 auto;
+  font-size: 1.5rem;
+}
+
+.landing-page-payments-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.landing-page-payment {
+  display: flex;
+  flex-direction: column;
+  min-width: 350px;
+  width: calc((100% / 3) - 3rem);
+  background-color: #fff;
+  box-shadow: 4px 4px 8px 2px #000000;
+  border-radius: 0.2rem;
+  padding: 1.5rem;
+  margin: 1rem;
+}
+
+.payment-id,
+.payee-name,
+.payment-details {
+  margin: 0.2rem;
+}
+
+.payment-id {
+  color: $primaryColor;
+  font-weight: 800;
+  border-bottom: 1px solid black;
+  transition: all 0.1s;
+
+  &:hover,
+  &:focus,
+  &:active {
+    cursor: pointer;
+    color: lighten($primaryColor, $amount: 10%);
+  }
+}
+
+.payee-name {
+  font-size: 1.8rem;
+  color: $primaryColor2;
+  font-weight: 500;
+}
+
+// Media Queries - Screen-size 1450px
+@media (max-width: 1451px) {
+  .payee-name {
+    font-size: 1.8rem;
+  }
+
+  .payment-details {
+    font-size: 1.3rem;
+  }
+}
+
+// Media Queries - Screen-size 500px
+@media (max-width: 500px) {
+  .payments-landing-page h1 {
+    font-size: 2.4rem;
+    text-align: center;
+    margin: 0.3rem;
+    padding: 2rem;
+  }
+
+  .payee-name {
+    font-weight: 800;
+    font-size: 1.5rem;
+  }
+
+  .payment-details {
+    font-size: 1.2rem;
+  }
+}
+
+// Media Queries - Screen-size 380px
+@media (max-width: 380px) {
+  .landing-page-payment {
+    min-width: 300px;
+  }
+
+  .payment-id {
+    font-size: 1.4rem;
+  }
+
+  .payee-name {
+    font-size: 1.3rem;
+  }
+
+  .payment-details {
+    font-size: 1.1rem;
+  }
 }
