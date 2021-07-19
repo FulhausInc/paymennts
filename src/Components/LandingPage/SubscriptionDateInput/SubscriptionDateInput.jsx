@@ -56,7 +56,7 @@ const SubscriptionDateInput = (props) => {
                 ? Date.parse(subscriptionStartDate)
                 : subscriptionStartDate
             }
-            minDate={subDays(new Date(), 1)}
+            minDate={subDays(new Date(), 120)}
             onChange={(d) => handleDeliveryDate(d)}
           />
         </div>
