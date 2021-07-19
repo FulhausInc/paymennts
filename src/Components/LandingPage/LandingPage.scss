@@ -1,5 +1,5 @@
-@import '../AppColors';
-@import '../StyleMixins';
+@import "../AppColors";
+@import "../StyleMixins";
 
 * {
   -moz-box-sizing: border-box;
@@ -9,22 +9,54 @@
 
 .payments-landing-page {
   @include flex(column);
+  width: 100vw;
 
   h1 {
-    color: #fff;
+    color: $whiteColor;
     background-color: $primaryColor;
-    font-size: 3rem;
-    margin: 0 0 2rem;
-    padding: 3rem;
+    font-size: 2rem;
+    margin: 0;
+    padding: 1rem;
   }
 }
 
 .landing-page-wrapper {
   @include flex(column);
-  width: 95%;
-  max-width: 1800px;
-  margin: 0 auto;
-  font-size: 1.5rem;
+  width: 100%;
+  font-size: 1rem;
+  padding: 2rem;
+}
+
+.landing-page-table {
+  border-collapse: collapse;
+
+  td,
+  th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 0.5rem;
+  }
+
+  th {
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  td a,
+  td small {
+    display: block;
+    font-size: 0.8rem;
+  }
+
+  tr:nth-child(even) {
+    background-color: $lightColor;
+  }
+}
+
+.landing-page-active-sub {
+  font-size: 0.8rem;
+  color: $greenColor;
+  font-weight: bold;
 }
 
 .landing-page-payments-container {
