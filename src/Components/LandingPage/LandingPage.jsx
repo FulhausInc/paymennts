@@ -10,6 +10,7 @@ import Gap from "../CommonComponents/Gap";
 import { format } from "date-fns";
 import PageModal from "../CommonComponents/PageModal";
 import SubscriptionDateInput from "./SubscriptionDateInput/SubscriptionDateInput";
+import formatAmountByCurrency from "../../Functions/currencyFormatter";
 
 const UnconnectedLandingPage = ({ history, dispatch, allPaymentDetails }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -76,15 +77,17 @@ const UnconnectedLandingPage = ({ history, dispatch, allPaymentDetails }) => {
                         ? "Subscription"
                         : "One Time"}
                     </td>
-                    <td>{paymentDetails?.paymentID}</td>
+                    <td>
+                      <a href={paymentDetails.paymentLink} target="blank">
+                        {paymentDetails?.paymentID}
+                      </a>
+                    </td>
                     <td>{paymentDetails?.payerName}</td>
                     <td>
                       <Fragment>
-                        {paymentDetails?.chargeAmount.toFixed(2)}
-                        {paymentDetails?.paymentLink && (
-                          <a href={paymentDetails.paymentLink} target="blank">
-                            Payment Link
-                          </a>
+                        {formatAmountByCurrency(
+                          paymentDetails?.chargeAmount,
+                          paymentDetails?.currency
                         )}
                       </Fragment>
                     </td>
@@ -151,7 +154,10 @@ const UnconnectedLandingPage = ({ history, dispatch, allPaymentDetails }) => {
                           href={paymentDetails.paymentDetailsURL}
                           target="blank"
                         >
-                          {paymentDetails?.paymentDetailsURL}
+                          {paymentDetails?.paymentDetailsURL.replace(
+                            "https://quotebuilder.fulhaus.com/quote/",
+                            ""
+                          )}
                         </a>
                       )}
                     </td>
