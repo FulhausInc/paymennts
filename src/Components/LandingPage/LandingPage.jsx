@@ -8,9 +8,15 @@ import { Fragment } from "react";
 import Button from "../CommonComponents/Button";
 import Gap from "../CommonComponents/Gap";
 import { format } from "date-fns";
+import PageModal from "../CommonComponents/PageModal";
+import SubscriptionDateInput from "./SubscriptionDateInput/SubscriptionDateInput";
 
 const UnconnectedLandingPage = ({ history, dispatch, allPaymentDetails }) => {
   const [isLoading, setIsLoading] = useState(true);
+  const [showSubscriptionStartDateInput, setShowSubscriptionStartDateInput] =
+    useState(false);
+  const [activePayment, setActivePayment] = useState({});
+
   useEffect(() => {
     const fetchAllPaymentDetails = async () => {
       let response = await fetchUtil("/payments/details", "GET", "");
@@ -31,22 +37,13 @@ const UnconnectedLandingPage = ({ history, dispatch, allPaymentDetails }) => {
     fetchAllPaymentDetails();
   }, []);
 
-  const handleStartSubscription = async (pUUID) => {
-    const subscriptionDetails = {
-      paymentUUID: pUUID,
-      startDate: new Date(),
-    };
+  const add_months = (date, n) => {
+    return new Date(date.setMonth(date.getMonth() + n));
+  };
 
-    let response = await fetchUtil(
-      "/payments/start-subscription",
-      "POST",
-      subscriptionDetails
-    );
-    if (response.success) {
-      console.log(response.message);
-    } else {
-      console.log(response.message);
-    }
+  const handleStartSubscription = async (pD) => {
+    setActivePayment(pD);
+    setShowSubscriptionStartDateInput(true);
   };
 
   return isLoading ? (
@@ -54,66 +51,69 @@ const UnconnectedLandingPage = ({ history, dispatch, allPaymentDetails }) => {
       <BlockLoading color="#FF4E24" />
     </div>
   ) : (
-    <section className="payments-landing-page">
-      <h1>All Payments</h1>
-      <div className="landing-page-wrapper">
-        <table className="landing-page-table">
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Payment ID</th>
-              <th>Client</th>
-              <th>Amount</th>
-              <th>Subscription</th>
-              <th>Quote</th>
-              <th>Processed</th>
-            </tr>
-          </thead>
-          <tbody>
-            {allPaymentDetails.map((paymentDetails, index) => {
-              return (
-                <tr key={index}>
-                  <td>
-                    {paymentDetails?.recurringAmountDetails?.length > 0
-                      ? "Subscription"
-                      : "One Time"}
-                  </td>
-                  <td>{paymentDetails?.paymentID}</td>
-                  <td>{paymentDetails?.payerName}</td>
-                  <td>
-                    <Fragment>
-                      {paymentDetails?.chargeAmount.toFixed(2)}
-                      {paymentDetails?.paymentLink && (
-                        <a href={paymentDetails.paymentLink} target="blank">
-                          Payment Link
-                        </a>
-                      )}
-                    </Fragment>
-                  </td>
-                  <td>
-                    {paymentDetails?.recurringAmountDetails?.length > 0 && (
-                      <div>
-                        {paymentDetails?.recurringAmountDetails.map(
-                          (recurringAmountDetails, index) => (
-                            <small key={index}>{`${recurringAmountDetails?.name
-                              ?.split("-")[0]
-                              .trim()
-                              .replace(
-                                "Monthly ",
-                                ""
-                              )}: ${recurringAmountDetails?.amount?.toFixed(
-                              2
-                            )}`}</small>
-                          )
+    <Fragment>
+      <section className="payments-landing-page">
+        <h1>All Payments</h1>
+        <div className="landing-page-wrapper">
+          <table className="landing-page-table">
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Payment ID</th>
+                <th>Client</th>
+                <th>Amount</th>
+                <th>Subscription</th>
+                <th>Quote</th>
+                <th>Processed</th>
+              </tr>
+            </thead>
+            <tbody>
+              {allPaymentDetails.map((paymentDetails, index) => {
+                return (
+                  <tr key={index}>
+                    <td>
+                      {paymentDetails?.recurringAmountDetails?.length > 0
+                        ? "Subscription"
+                        : "One Time"}
+                    </td>
+                    <td>{paymentDetails?.paymentID}</td>
+                    <td>{paymentDetails?.payerName}</td>
+                    <td>
+                      <Fragment>
+                        {paymentDetails?.chargeAmount.toFixed(2)}
+                        {paymentDetails?.paymentLink && (
+                          <a href={paymentDetails.paymentLink} target="blank">
+                            Payment Link
+                          </a>
                         )}
-                        <Gap value="0.5rem" />
-                        {paymentDetails?.paymentProcessed && (
-                          <Fragment>
-                            {paymentDetails?.subscriptionActive && (
-                              <div className="landing-page-active-sub">
-                                Active
-                                <span>
-                                  {`: 
+                      </Fragment>
+                    </td>
+                    <td>
+                      {paymentDetails?.recurringAmountDetails?.length > 0 && (
+                        <div>
+                          {paymentDetails?.recurringAmountDetails.map(
+                            (recurringAmountDetails, index) => (
+                              <small
+                                key={index}
+                              >{`${recurringAmountDetails?.name
+                                ?.split("-")[0]
+                                .trim()
+                                .replace(
+                                  "Monthly ",
+                                  ""
+                                )}: ${recurringAmountDetails?.amount?.toFixed(
+                                2
+                              )}`}</small>
+                            )
+                          )}
+                          <Gap value="0.5rem" />
+                          {paymentDetails?.paymentProcessed && (
+                            <Fragment>
+                              {paymentDetails?.subscriptionActive && (
+                                <div className="landing-page-active-sub">
+                                  Active
+                                  <span>
+                                    {`: 
                                     ${format(
                                       new Date(
                                         paymentDetails?.recurringAmountDetails?.[0].startAt
@@ -121,46 +121,47 @@ const UnconnectedLandingPage = ({ history, dispatch, allPaymentDetails }) => {
                                       "MMM dd, yyyy"
                                     )}
                                   `}
-                                </span>
-                              </div>
-                            )}
-                            {!paymentDetails?.subscriptionActive && (
-                              <Button
-                                name="start-sub"
-                                background="#000000"
-                                borderRadius="0"
-                                enabled={true}
-                                padding="0.5rem 1rem"
-                                margin="0"
-                                onClick={(e) =>
-                                  handleStartSubscription(
-                                    paymentDetails?.paymentUUID
-                                  )
-                                }
-                                color="#ffffff"
-                                label="Start Subscription"
-                                fontSize="0.8rem"
-                              />
-                            )}
-                          </Fragment>
-                        )}
-                      </div>
-                    )}
-                  </td>
-                  <td>
-                    {paymentDetails?.paymentDetailsURL && (
-                      <a href={paymentDetails.paymentDetailsURL} target="blank">
-                        {paymentDetails?.paymentDetailsURL}
-                      </a>
-                    )}
-                  </td>
-                  <td>{paymentDetails?.paymentProcessed ? "Yes" : "No"}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-        {/* <table className='landing-page-payments-container'>
+                                  </span>
+                                </div>
+                              )}
+                              {!paymentDetails?.subscriptionActive && (
+                                <Button
+                                  name="start-sub"
+                                  background="#000000"
+                                  borderRadius="0"
+                                  enabled={true}
+                                  padding="0.5rem 1rem"
+                                  margin="0"
+                                  onClick={(e) =>
+                                    handleStartSubscription(paymentDetails)
+                                  }
+                                  color="#ffffff"
+                                  label="Start Subscription"
+                                  fontSize="0.8rem"
+                                />
+                              )}
+                            </Fragment>
+                          )}
+                        </div>
+                      )}
+                    </td>
+                    <td>
+                      {paymentDetails?.paymentDetailsURL && (
+                        <a
+                          href={paymentDetails.paymentDetailsURL}
+                          target="blank"
+                        >
+                          {paymentDetails?.paymentDetailsURL}
+                        </a>
+                      )}
+                    </td>
+                    <td>{paymentDetails?.paymentProcessed ? "Yes" : "No"}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          {/* <table className='landing-page-payments-container'>
           {allPaymentDetails.map((paymentDetails) => {
             return (
 
@@ -180,8 +181,22 @@ const UnconnectedLandingPage = ({ history, dispatch, allPaymentDetails }) => {
             )
           })}
         </table> */}
-      </div>
-    </section>
+        </div>
+      </section>
+      {showSubscriptionStartDateInput && (
+        <PageModal
+          visible={showSubscriptionStartDateInput}
+          component={
+            <SubscriptionDateInput
+              paymentDetails={activePayment}
+              subscriptionStartDate={add_months(new Date(), 1)}
+              onClose={(e) => setShowSubscriptionStartDateInput(false)}
+            />
+          }
+          onClose={(e) => setShowSubscriptionStartDateInput(false)}
+        />
+      )}
+    </Fragment>
   );
 };
 

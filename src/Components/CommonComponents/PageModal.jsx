@@ -16,7 +16,7 @@ const PageModal = (props) => {
       display: props.visible ? "flex" : "none",
       justifyContent: "center",
       alignItems: "center",
-      background: "rgba(37, 43, 72, 0.6)",
+      backgroundColor: "rgba(37, 43, 72, 0.6)",
       position: "fixed",
       minHeight: "100vh",
       width: "100vw",
