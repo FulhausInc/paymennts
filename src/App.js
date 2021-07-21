@@ -21,7 +21,7 @@ const UnconnectedApp = (props) => {
             value: response.data,
           });
         } else {
-          openURL(process.env.REACT_APP_LANDING_URL);
+          // openURL(process.env.REACT_APP_LANDING_URL);
           console.log(response.message);
         }
       };
