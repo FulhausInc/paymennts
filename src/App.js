@@ -10,26 +10,26 @@ import openURL from "./Functions/openURL";
 import { connect } from "react-redux";
 
 const UnconnectedApp = (props) => {
-  useEffect(() => {
-    if (!props.user) {
-      const checkUserLoginStatus = async () => {
-        let response = await fetchUtil("/users/status", "GET", "");
+  // useEffect(() => {
+  //   if (!props.user) {
+  //     const checkUserLoginStatus = async () => {
+  //       let response = await fetchUtil("/users/status", "GET", "");
 
-        if (response.success) {
-          props.dispatch({
-            type: "set-user",
-            value: response.data,
-          });
-        } else {
-          // openURL(process.env.REACT_APP_LANDING_URL);
-          console.log(response.message);
-        }
-      };
+  //       if (response.success) {
+  //         props.dispatch({
+  //           type: "set-user",
+  //           value: response.data,
+  //         });
+  //       } else {
+  //         // openURL(process.env.REACT_APP_LANDING_URL);
+  //         console.log(response.message);
+  //       }
+  //     };
 
-      checkUserLoginStatus();
-      return;
-    }
-  }, []);
+  //     checkUserLoginStatus();
+  //     return;
+  //   }
+  // }, []);
 
   return (
     <BrowserRouter>
